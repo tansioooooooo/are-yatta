@@ -25,7 +25,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=mysql://root:password@mysql:3306/recurring_todo
+      - DATABASE_URL=mysql://root:password@mysql:3306/are_yatta
       - PORT=8000
     depends_on:
       - mysql
@@ -37,7 +37,7 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=recurring_todo
+      - MYSQL_DATABASE=are_yatta
     volumes:
       - mysql_data:/var/lib/mysql
 

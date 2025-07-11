@@ -96,7 +96,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ isOpen, onClose, cate
 
                 <div>
                   <label htmlFor="pattern" className="block text-sm font-medium text-gray-700">
-                    繰り返しパターン
+                    タスクタイプ
                   </label>
                   <select
                     id="pattern"
@@ -104,16 +104,17 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ isOpen, onClose, cate
                     onChange={(e) => setFormData({ ...formData, recurrencePattern: e.target.value as RecurrencePattern })}
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                   >
-                    <option value="DAILY">日ごと</option>
-                    <option value="WEEKLY">週ごと</option>
-                    <option value="MONTHLY">月ごと</option>
-                    <option value="CUSTOM">カスタム</option>
+                    <option value="ONCE">単発タスク</option>
+                    <option value="DAILY">日次タスク</option>
+                    <option value="WEEKLY">週次タスク</option>
+                    <option value="MONTHLY">月次タスク</option>
+                    <option value="CUSTOM">カスタム間隔</option>
                   </select>
                 </div>
 
                 <div>
                   <label htmlFor="interval" className="block text-sm font-medium text-gray-700">
-                    繰り返し間隔
+                    間隔（日数）
                   </label>
                   <input
                     type="number"
