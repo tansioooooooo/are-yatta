@@ -99,14 +99,18 @@ are-yatta/
 - `feat:`, `fix:`, `docs:`, `refactor:`, `test:` などのプレフィックスを付ける
 
 ### ブランチ運用（個人開発簡易版）
-- **main**: 本番環境用の安定版
-- **develop**: 開発作業用ブランチ
-- **feature/xxx**: 大きな機能開発時のみ使用
+- **main**: 本番環境用の安定版（直接コミット禁止）
+- **develop**: 開発統合ブランチ（直接作業は避ける）
+- **feature/xxx**: 機能開発用ブランチ（必ず作成する）
 
-簡易ブランチ作成：
+**重要**: 作業時は必ずfeatureブランチを作成し、mainブランチ以外なら自由にコミット・プッシュして良い
+
+ブランチ作成手順：
 ```bash
 git checkout develop
-git checkout -b feature/user-auth  # 大きな機能のみ
+git pull origin develop
+git checkout -b feature/機能名
+# この後は自由にコミット・プッシュ可能
 ```
 
 ### ライブラリ管理・インストール規約
@@ -135,6 +139,7 @@ docker-compose exec frontend npm install --save-dev package-name  # devDependenc
 - 実装前に設計・計画を確認する
 - 複雑な変更時は段階的にアプローチする
 - テスト追加は機能の重要度に応じて判断する
+- **mainブランチ以外では自由にコミット・プッシュして良い**
 
 ## 開発フロー
 
@@ -145,17 +150,21 @@ docker-compose exec frontend npm install --save-dev package-name  # devDependenc
    - docs/ で設計メモを確認する
 
 2. **実装フェーズ**
-   - develop ブランチで直接作業（小さな変更）
-   - feature ブランチ作成（大きな機能のみ）
+   - developブランチから **必ずfeature/xxx ブランチを作成する**
    - 必要に応じてテスト作成
+   - 機能実装
 
 3. **動作確認**
    - `make dev`で全サービスを起動して動作確認する
    - **レスポンシブ確認**: PC・スマートフォン両方のレイアウトをテストする
 
-4. **コミット**
+4. **コミット・プッシュ**
    - Conventional Commits形式でコミットする
    - 適切な粒度でコミットを分割する
+   - **featureブランチなら自由にプッシュして良い**
+
+5. **完了後**
+   - developブランチへのマージを検討する
 
 ### ディレクトリ間の連携
 
@@ -172,6 +181,8 @@ docker-compose exec frontend npm install --save-dev package-name  # devDependenc
 - 個人開発なので、シンプルで分かりやすい実装を優先する
 - **UI実装時は必ずPC・スマートフォン両方での表示を考慮する**
 - **Tailwindのレスポンシブクラス（sm:, md:, lg:）を適切に使用する**
+- **mainブランチ以外では自由にコミット・プッシュして構わない**
+- **作業時は必ずfeatureブランチを作成する**
 
 ### モノレポでの作業
 - backend/ と frontend/ の連携を意識する
